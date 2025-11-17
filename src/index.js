@@ -50,3 +50,19 @@ function updateTime() {
 
 updateTime();
 setInterval(updateTime, 1000);
+
+function updateCity(event) {
+  let cityTimeZone = event.target.value;
+  let cityTime = moment().tz(cityTimeZone);
+  let citiesElement = document.querySelector("#cities");
+  citiesElement.innerHTML = `
+    <div class="city" id="${cityTimeZone.replace("_", "-").split("/")[1]}">
+      <h2>${cityTimeZone.replace("_", " ").split("/")[1]}</h2>
+      <div class="date">${cityTime.format("MMMM Do YYYY")}</div>
+      <div class="time">${cityTime.format("h:mm:ss A")}</div>
+    </div>
+    <a href="/">&#8592; Back to all cities</a>
+  `;
+}
+let citiesSelectElement = document.querySelector("#city");
+citiesSelectElement.addEventListener("change", updateCity);
