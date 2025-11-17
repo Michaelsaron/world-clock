@@ -58,6 +58,9 @@ updateTime();
 // When choosing ONE city
 function updateCity(event) {
   let cityTimeZone = event.target.value;
+  if (cityTimeZone === "current") {
+    cityTimeZone = moment.tz.guess();
+  }
   if (!cityTimeZone) return;
 
   let cityName = cityTimeZone.split("/")[1].replace("_", " ");
